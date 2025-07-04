@@ -22,6 +22,7 @@ jobs:
       - name: Generate docs
         run: |
           python3 scripts/docs.py lib/*.h
+          scripts/index.sh
 
       - name: Commit and push updated docs
         run: |
