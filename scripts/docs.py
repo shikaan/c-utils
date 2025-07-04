@@ -2,13 +2,14 @@
 
 import re
 import sys
+import os
 
 if len(sys.argv) < 2:
   print("Usage: python docs.py <header-file>")
   sys.exit(1)
 
 header_file = sys.argv[1]
-md_file = "docs/" + header_file + ".md"
+md_file = "docs/" + os.path.basename(header_file) + ".md"
 
 with open(header_file, "r") as f:
   lines = f.readlines()
