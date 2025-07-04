@@ -5,7 +5,7 @@ import sys
 import os
 
 if len(sys.argv) < 2:
-  print("Usage: python docs.py <header-file>")
+  print("Usage: python3 docs.py <header-file>")
   sys.exit(1)
 
 header_file = sys.argv[1]
@@ -14,10 +14,10 @@ md_file = "docs/" + os.path.basename(header_file) + ".md"
 with open(header_file, "r") as f:
   lines = f.readlines()
 
-# Extract doc block before #ifndef
+# Extract doc block before ___HEADER_END___
 doc_block = []
 for line in lines:
-  if line.startswith("#ifndef"):
+  if "___HEADER_END___" in line:
     break
   doc_block.append(line.rstrip("\n")[3:])
 
@@ -70,6 +70,9 @@ while i < len(lines):
 with open(md_file, "w") as out:
   for l in doc_block:
     out.write(l + "\n")
-  out.write("\n## API Docs\n\n")
+  
+  if api_docs:
+    out.write("\n## API Docs\n\n")
+  
   for method in api_docs:
     out.write(f"### {method['name']}\n\n{method['desc']}\n\n```c\n{method['example']}\n```\n\n\n")

@@ -36,6 +36,7 @@
 //
 // // define main as above
 // ```
+// ___HEADER_END___
 
 #ifndef TEST_H
 #define TEST_H
