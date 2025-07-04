@@ -37,7 +37,6 @@ void expectEqlMyStruct(const MyStruct* a, const MyStruct* b, const char* name) {
 // define main as above
 ```
 
-
 ## API Docs
 
 ### expect
