@@ -1,4 +1,4 @@
-Debug (v0.0.1)
+Debug (v0.2.0)
 ---
 
 Convenience functions to easily debug your C code.
@@ -51,8 +51,18 @@ debugf(f);  // prints "(nameOfTheFunction) f: 3.14"
 Print a debug message with an unsigned integer value and function name.
 
 ```c
-size_t u = 123u;
+unsigned int u = 123;
 debugu(u);  // prints "(nameOfTheFunction) u: 123"
+```
+
+
+### debugu
+
+Print a debug message with an unsigned long value and function name.
+
+```c
+unsigned long u = 123;
+debuglu(u);  // prints "(nameOfTheFunction) u: 123"
 ```
 
 
@@ -62,6 +72,15 @@ Print the function name (trace call).
 
 ```c
 trace();  // prints "nameOfTheFunction()"
+```
+
+
+### logmsg
+
+Logs a string with its function name
+
+```c
+logs("message");  // prints "(nameOfTheFunction) message"
 ```
 
 

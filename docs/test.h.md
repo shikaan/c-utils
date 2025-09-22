@@ -1,10 +1,12 @@
-Test (v0.0.1)
+Test (v0.1.0)
 ---
 
 ## Getting Started
 
-Compile the test executable returning `test__report()` to get the number of
+Compile the test executable returning `report()` to get the number of
 failed tests as the status code.
+
+Define FAILED_ONLY to see only failures.
 
 ```c
 // example.test.c
@@ -12,12 +14,12 @@ failed tests as the status code.
 #include "../test/test.h"
 
 void testExample() {
-  test__expectTrue(example(), "returns true");
+  expectTrue(example(), "returns true");
 }
 
 int main(void) {
-  test__suite(testExample);
-  return test__report();
+  suite(testExample);
+  return report();
 }
 ```
 
@@ -28,10 +30,11 @@ int main(void) {
 #include "my_struct.h" // myStruct_eql, myStruct_toString
 #include "../test/test.h"
 
-void expectEqlMyStruct(const MyStruct* a, const MyStruct* b, const char* name) {
+void expectEqlMyType(const MyType* a, const MyType* b, const char* name) {
   char msg[256];
-  snprintf(msg, 256, "Expected %s to equal %s", myStruct_toString(a), myStruct_toString(b));
-  test__expect(myStruct_eql(a, b), name, msg);
+  snprintf(msg, 256, "Expected %s to equal %s", myStruct_toString(a),
+  myStruct_toString(b));
+  expect(myStruct_eql(a, b), name, msg);
 }
 
 // define main as above
@@ -41,11 +44,11 @@ void expectEqlMyStruct(const MyStruct* a, const MyStruct* b, const char* name) {
 
 ### expect
 
-Asserts a condition and prints the result. Use it to immplement custom assertions.
+Asserts a condition and prints the result. Use it to implement custom assertions.
 
 ```c
 int a = 1;
-test__expect(a == 1, "a is one", "Should be true");
+expect(a == 1, "a is one", "Should be true");
 ```
 
 
@@ -54,7 +57,7 @@ test__expect(a == 1, "a is one", "Should be true");
 Asserts that a condition is true.
 
 ```c
-test__expectTrue(2 > 1, "2 is greater than 1");
+expectTrue(2 > 1, "2 is greater than 1");
 ```
 
 
@@ -63,7 +66,7 @@ test__expectTrue(2 > 1, "2 is greater than 1");
 Asserts that a condition is false.
 
 ```c
-test__expectFalse(0, "zero is false");
+expectFalse(0, "zero is false");
 ```
 
 
@@ -73,7 +76,7 @@ Asserts that a pointer is not NULL.
 
 ```c
 int x = 5;
-test__expectNotNull(&x, "pointer is not null");
+expectNotNull(&x, "pointer is not null");
 ```
 
 
@@ -83,79 +86,124 @@ Asserts that a pointer is NULL.
 
 ```c
 int* p = NULL;
-test__expectNull(p, "pointer is null");
+expectNull(p, "pointer is null");
 ```
 
 
-### expectEqlInt
+### expectEqli
 
 Asserts that two integers are equal.
 
 ```c
-test__expectEqlInt(3, 3, "3 equals 3");
+expectEqli(3, 3, "3 equals 3");
 ```
 
 
-### expectNeqInt
+### expectNeqi
 
 Asserts that two integers are not equal.
 
 ```c
-test__expectNeqInt(3, 4, "3 does not equal 4");
+expectNeqi(3, 4, "3 does not equal 4");
 ```
 
 
-### expectEqlFloat
+### expectEqlu
+
+Asserts that two unsigned integers are equal.
+
+```c
+expectEqlu(3, 3, "3 equals 3");
+```
+
+
+### expectNeqlu
+
+Asserts that two unsigned integers are not equal.
+
+```c
+expectNeqlu(3, 4, "3 does not equal 4");
+```
+
+
+### expectEqllu
+
+Asserts that two unsigned long integers are equal.
+
+```c
+expectEqllu(3, 3, "3 equals 3");
+```
+
+
+### expectNeqllu
+
+Asserts that two unsigned long integers are equal.
+
+```c
+expectNeqllu(3, 4, "3 does not equal 4");
+```
+
+
+### expectEqlf
 
 Asserts that two floats are equal within a threshold.
 
 ```c
-test__expectEqlFloat(1.0f, 1.0f, "floats are equal");
+expectEqlf(1.0f, 1.0f, "floats are equal");
 ```
 
 
-### expectNeqFloat
+### expectNeqf
 
 Asserts that two floats are not equal within a threshold.
 
 ```c
-test__expectNeqFloat(1.0f, 2.0f, "floats are not equal");
+expectNeqf(1.0f, 2.0f, "floats are not equal");
 ```
 
 
-### expectEqlDouble
+### expectEqld
 
 Asserts that two doubles are equal within a threshold.
 
 ```c
-test__expectEqlDouble(1.0, 1.0, "doubles are equal");
+expectEqld(1.0, 1.0, "doubles are equal");
 ```
 
 
-### expectNeqDouble
+### expectNeqd
 
 Asserts that two doubles are not equal within a threshold.
 
 ```c
-test__expectNeqDouble(1.0, 2.0, "doubles are not equal");
+expectNeqd(1.0, 2.0, "doubles are not equal");
 ```
 
 
-### expectEqlString
+### expectEqls
 
 Asserts that two strings are equal up to max_size.
 
 ```c
-test__expectEqlString("foo", "foo", 3, "strings are equal");
+expectEqls("foo", "foo", 3, "strings are equal");
 ```
 
 
-### expectNeqString
+### expectNeqs
 
 Asserts that two strings are not equal up to max_size.
 
 ```c
-test__expectNeqString("foo", "bar", 3, "strings are not equal");
+expectNeqs("foo", "bar", 3, "strings are not equal");
+```
+
+
+### expectIncls
+
+Asserts that first string includes the second.
+
+```c
+expectIncls("foobar", "bar", "strings are included");
 ```
 
 
@@ -164,16 +212,16 @@ test__expectNeqString("foo", "bar", 3, "strings are not equal");
 Prints a summary of test results and returns the number of failed tests.
 
 ```c
-return test__report();
+return report();
 ```
 
 
-### report
+### case
 
 Prints the name of a test case.
 
 ```c
-test__case("my test");
+case("my test");
 ```
 
 
@@ -182,7 +230,7 @@ test__case("my test");
 Runs a test suite and prints its name.
 
 ```c
-test__suite(myTestFunction);
+suite(myTestFunction);
 ```
 
 
