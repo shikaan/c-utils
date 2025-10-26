@@ -49,7 +49,7 @@
  *   char *ptr = allocate(100);
  *   deallocate(&ptr);  // ptr is now nullptr
  */
-#define deallocate(DoublePointer)                                             \
+#define deallocate(DoublePointer)                                              \
   {                                                                            \
     if (*(DoublePointer) != nullptr) {                                         \
       free((void *)*(DoublePointer));                                          \
