@@ -1,44 +1,44 @@
-Alloc (v0.0.1)
+Alloc (v0.1.0)
 ---
 
 Functions and macros for safer memory management.
 
 ```c
-void* result = allocSafe(100);
+void* result = allocate(100);
 
-allocSafe(100); // gives a compiler warning if not checked
+allocate(100); // gives a compiler warning if not checked
 
-deallocSafe(&result);
+deallocate(&result);
 ```
 
 ## API Docs
 
-### allocSafe
+### allocate
 
-Allocate memory and force caller to check on the result.
+Allocate zero-ed memory and force caller to check on the result.
 
 ```c
-void* result = allocSafe(100);
+void* result = allocate(100);
 ```
 
 
-### reallocSafe
+### reallocate
 
 Reallocate memory and force caller to check on the result.
 
 ```c
-void* result = allocSafe(100);
-result = reallocSafe(&result, 200);
+void* result = allocate(100);
+result = reallocate(&result, 200);
 ```
 
 
-### deallocSafe
+### deallocate
 
 Safely deallocate memory and set pointer to nullptr.
 
 ```c
-char *ptr = allocSafe(100);
-deallocSafe(&ptr);  // ptr is now nullptr
+char *ptr = allocate(100);
+deallocate(&ptr);  // ptr is now nullptr
 ```
 
 
