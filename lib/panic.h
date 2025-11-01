@@ -1,4 +1,4 @@
-// Panic (v0.0.1)
+// Panic (v0.0.2)
 // ---
 //
 // Functions and macros to deal with unrecoverable errors.
@@ -33,7 +33,7 @@ static inline void __panicif(int condition, const char msg[], const char file[],
  * @example
  *   panic("unrecoverable error");
  */
-#define panic(Condition, Msg) __panic(Condition, Msg, __FILE__, __LINE__)
+#define panic(Msg) __panic(Msg, __FILE__, __LINE__)
 
 /**
  * Panic and abort if a condition is true.
