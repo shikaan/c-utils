@@ -1,4 +1,4 @@
-Panic (v0.0.1)
+Panic (v0.0.2)
 ---
 
 Functions and macros to deal with unrecoverable errors.
