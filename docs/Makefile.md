@@ -1,4 +1,4 @@
- Makefile (v0.0.1)
+ Makefile (v0.0.2)
  ---
  A minimalistic C23 Makefile with strict flags.
  
