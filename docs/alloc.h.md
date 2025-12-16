@@ -15,7 +15,7 @@ deallocate(&result);
 
 ### allocate
 
-Allocate zero-ed memory and force caller to check on the result.
+Allocate zero-ed memory.
 
 ```c
 void* result = allocate(100);
@@ -24,7 +24,7 @@ void* result = allocate(100);
 
 ### reallocate
 
-Reallocate memory and force caller to check on the result.
+Reallocate memory.
 
 ```c
 void* result = allocate(100);

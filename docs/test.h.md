@@ -1,4 +1,4 @@
-Test (v0.1.0)
+Test (v1.0.0)
 ---
 
 ## Getting Started
@@ -216,12 +216,12 @@ return report();
 ```
 
 
-### case
+### test
 
 Prints the name of a test case.
 
 ```c
-case("my test");
+test("my test");
 ```
 
 
