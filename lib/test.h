@@ -1,4 +1,4 @@
-// Test (v0.1.0)
+// Test (v1.0.0)
 // ---
 //
 // ## Getting Started
@@ -289,14 +289,14 @@ int report(void) {
 
 /**
  * Prints the name of a test case.
- * @name case
+ * @name test
  * @example
- *    case("my test");
+ *    test("my test");
  */
 #ifndef FAILED_ONLY
-#define case(name) printf("  %s:\n", name)
+#define test(name) printf("  %s:\n", name)
 #else
-#define case(name)
+#define test(name)
 #endif
 
 /**
