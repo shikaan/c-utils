@@ -60,7 +60,6 @@ map_t *mapCreate(map_size_t size) {
   self->values = (value_t *)allocate(sizeof(void *) * size);
   if (!self->values) {
     deallocate(&self->keys);
-    deallocate(&self->keys);
     return NULL;
   }
 
