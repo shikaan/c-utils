@@ -1,16 +1,20 @@
-// For strdup
-#ifdef __STDC_ALLOC_LIB__
-#define __STDC_WANT_LIB_EXT2__ 1
-#else
-#define _POSIX_C_SOURCE 200809L
-#endif
-
 #include "map.h"
 #include "alloc.h"
 #include "panic.h"
 #include <string.h>
 
 static char MAP_TOMBSTONE[] = "___TOMBSTONE!!@@##";
+
+#if !defined(_POSIX_C_SOURCE) || _POSIX_C_SOURCE < 200809L
+// If strdup is not available, define it
+char *strdup(const char *s) {
+    size_t len = strlen(s) + 1;
+    char *d = malloc(len);
+    if (d == NULL) return NULL;
+    memcpy(d, s, len);
+    return d;
+}
+#endif
 
 static map_size_t mapMakeKey(const map_t *self, const_map_key_t key) {
   uint64_t hash = 14695981039346656037U;
