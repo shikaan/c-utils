@@ -1,4 +1,4 @@
-### Makefile (v0.0.1)
+### Makefile (v0.0.2)
 ### ---
 ### A minimalistic C23 Makefile with strict flags.
 ### 
@@ -21,6 +21,7 @@ COMMON_CFLAGS := -std=c23 \
 	-Wall \
 	-Wextra \
 	-Werror \
+	-pedantic \
 	-fdiagnostics-color=always \
 	-fno-common \
 	-Winit-self \
