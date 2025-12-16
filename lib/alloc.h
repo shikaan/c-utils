@@ -16,19 +16,19 @@
 #include <stdlib.h>
 
 /**
- * Allocate zero-ed memory and force caller to check on the result.
+ * Allocate zero-ed memory.
  * @name allocate
  * @param {size_t} size - Number of bytes to allocate
  * @returns {void*} Allocated memory pointer
  * @example
  *   void* result = allocate(100);
  */
-[[nodiscard]] static inline void *allocate(size_t size) {
+static inline void *allocate(size_t size) {
   return calloc(1, size);
 }
 
 /**
- * Reallocate memory and force caller to check on the result.
+ * Reallocate memory.
  * @name reallocate
  * @param {void**} ptr - Pointer to the pointer to be reallocated
  * @param {size_t} size - New size in bytes
@@ -37,7 +37,7 @@
  *   void* result = allocate(100);
  *   result = reallocate(&result, 200);
  */
-[[nodiscard]] static inline void *reallocate(void **ptr, size_t size) {
+static inline void *reallocate(void **ptr, size_t size) {
   return realloc(*ptr, size);
 }
 
