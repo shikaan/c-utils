@@ -8,3 +8,4 @@ clean:
 
 .PHONY: test
 test: map.test
+	./map.test
