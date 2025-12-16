@@ -19,7 +19,7 @@ static map_size_t mapMakeKey(const map_t *self, const_map_key_t key) {
 
 static map_result_t mapGetIndex(const map_t *self, const_map_key_t key,
                                 map_size_t *result) {
-  panicif(!self, "map cannot not be null");
+  panicif(!self, "map cannot be null");
   const map_size_t index = mapMakeKey(self, key);
 
   for (map_size_t i = 0; i < self->size; i++) {
@@ -69,7 +69,7 @@ map_t *mapCreate(map_size_t size) {
 }
 
 map_result_t mapSet(map_t *self, const_map_key_t key, value_t value) {
-  panicif(!self, "map cannot not be null");
+  panicif(!self, "map cannot be null");
   map_size_t index = mapMakeKey(self, key);
   map_key_t old_key = self->keys[index];
   int collides_with_old_key =
@@ -103,13 +103,15 @@ map_result_t mapSet(map_t *self, const_map_key_t key, value_t value) {
   }
 
 set:
-  self->keys[index] = strdup(key);
+  if (self->keys[index] && self->keys[index] != MAP_TOMBSTONE) {
+    deallocate(&self->keys[index]);
+  }
   self->values[index] = value;
   return MAP_RESULT_OK;
 }
 
 value_t mapGet(const map_t *self, const_map_key_t key) {
-  panicif(!self, "map cannot not be null");
+  panicif(!self, "map cannot be null");
   map_size_t index;
   if (mapGetIndex(self, key, &index) == MAP_RESULT_OK) {
     return self->values[index];
@@ -118,7 +120,7 @@ value_t mapGet(const map_t *self, const_map_key_t key) {
 }
 
 value_t mapDelete(map_t *self, const_map_key_t key) {
-  panicif(!self, "map cannot not be null");
+  panicif(!self, "map cannot be null");
   map_size_t index;
   if (mapGetIndex(self, key, &index) == MAP_RESULT_OK) {
     value_t previous = self->values[index];
