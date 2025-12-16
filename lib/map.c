@@ -107,6 +107,7 @@ set:
   if (self->keys[index] && self->keys[index] != MAP_TOMBSTONE) {
     deallocate(&self->keys[index]);
   }
+  self->keys[index] = strdup(key);
   self->values[index] = value;
   return MAP_RESULT_OK;
 }

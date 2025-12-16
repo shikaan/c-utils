@@ -1,4 +1,4 @@
-map.test: CFLAGS := -DMAP_C_TEST
+map.test: CFLAGS := -std=c99 -Wall -Wextra -Werror -pedantic -DMAP_C_TEST
 map.test:
 	$(CC) $(CFLAGS) lib/map.c -o $@
 
