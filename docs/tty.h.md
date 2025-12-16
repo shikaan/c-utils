@@ -1,4 +1,4 @@
-TTY (v0.1.0)
+TTY (v0.0.1)
 ---
 
 Macros for styling terminal output with ANSI escape codes.

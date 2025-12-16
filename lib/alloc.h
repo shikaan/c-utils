@@ -42,17 +42,17 @@
 }
 
 /**
- * Safely deallocate memory and set pointer to nullptr.
+ * Safely deallocate memory and set pointer to NULL.
  * @name deallocate
  * @param {void**} DoublePointer - Pointer to the pointer that should be freed
  * @example
  *   char *ptr = allocate(100);
- *   deallocate(&ptr);  // ptr is now nullptr
+ *   deallocate(&ptr);  // ptr is now NULL
  */
 #define deallocate(DoublePointer)                                              \
   {                                                                            \
-    if (*(DoublePointer) != nullptr) {                                         \
+    if (*(DoublePointer) != NULL) {                                            \
       free((void *)*(DoublePointer));                                          \
-      *(DoublePointer) = nullptr;                                              \
+      *(DoublePointer) = NULL;                                                 \
     }                                                                          \
   }

@@ -34,11 +34,11 @@ result = reallocate(&result, 200);
 
 ### deallocate
 
-Safely deallocate memory and set pointer to nullptr.
+Safely deallocate memory and set pointer to NULL.
 
 ```c
 char *ptr = allocate(100);
-deallocate(&ptr);  // ptr is now nullptr
+deallocate(&ptr);  // ptr is now NULL
 ```
 
 

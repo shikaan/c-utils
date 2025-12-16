@@ -43,9 +43,10 @@
 
 #pragma once
 
-#include <math.h>   // fabs
-#include <stdio.h>  // printf, snprintf
-#include <string.h> // strncmp
+#include <math.h>    // fabs
+#include <stdbool.h> // bool
+#include <stdio.h>   // printf, snprintf
+#include <string.h>  // strncmp
 
 #define FLOAT_THRESHOOLD 1e-6f
 #define DOUBLE_THRESHOOLD 1e-6f
