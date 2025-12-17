@@ -15,7 +15,7 @@ docs:
 
 .PHONY: clean
 clean:
-	rm -rf map.test set.test
+	rm -rf map.test set.test *.dSYM
 
 .PHONY: test
 test: map.test set.test

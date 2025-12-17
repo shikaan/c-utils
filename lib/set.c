@@ -87,7 +87,7 @@ set_result_t setAdd(set_t *self, const_set_key_t key) {
 
   // When there is a collision with another key, look for the next free index
   if (collides_with_old_key) {
-    uint8_t i;
+    set_size_t i;
 
     for (i = 1; i < self->size; i++) {
       set_size_t probed_idx = (index + i) % self->size;
