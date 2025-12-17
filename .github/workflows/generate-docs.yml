@@ -23,11 +23,7 @@ jobs:
           python-version: "3.x"
 
       - name: Generate docs
-        run: |
-          for file in lib/*.h lib/Makefile; do
-            python3 scripts/docs.py $file
-          done
-          scripts/index.sh
+        run: make docs
 
       - name: Commit and push updated docs
         if: github.ref == 'refs/heads/main'
